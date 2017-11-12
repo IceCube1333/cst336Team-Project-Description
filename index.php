@@ -1,7 +1,6 @@
 <?php
-
+    session_start();
     include 'information.php';
-    
  
 ?>
 
@@ -29,10 +28,17 @@
                 <h3>Choose an item you would like to purchase:</h3>
             </header>
             
-            <form>
+            <form method='get'>
                 
                 <strong><i>Item Name: </i></strong><input type = "text" name = "itemName">
                 <br>
+                <br>
+                
+                <!--Need info from database for itemTypes-->
+                <strong><i>Item Type: </i></strong>
+                <select name = "itemType">
+                    <option value = ""></option>
+                </select>
                 <br>
                 
                 <strong><i>Item Type: </i></strong>
@@ -41,19 +47,18 @@
                 </select>
                 
                 <br>
-                <br>
                 
                 <input type = "checkbox" name = "available"> <strong><i>Available: </i></strong>
-                <br>
                 <br>
                 
                 <input type = "radio" name = "orderBy" value = "price"><strong><i>Order By Price: </i></strong>
                 <br>
-                <br>
                 
                 <input type = "radio" name = "orderBy" value = "name"><strong><i>Order By Name: </i></strong>
                 <br>
-                <br>
+                
+                <input type = "radio" name = "order" value = "ASC"><strong><i>Order By Ascending </i></strong><br>
+                <input type = "radio" name = "order" value = "DESC"><strong><i>Order By Descending </i></strong><br>
                 
                 <input type="submit" value="Search" name="submit">
             </form>
