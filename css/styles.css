@@ -5,17 +5,9 @@ body {
      line-height: 1.5em;
      font-size: 1.2em;
  }
- 
- 
 header {
     text-align: center;
     font-family: 'Pacifico', cursive;
-}
-
-
-td {
-    font_size: 1.8em;
-    
 }
 #wrapper {
     margin: 0 auto;

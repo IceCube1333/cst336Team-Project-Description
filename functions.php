@@ -2,6 +2,7 @@
 session_start();
 include 'information.php';
 
+//used to display electronics 
 function displayElectronics() {
             $conn = getDatabaseConnection();
             $sql = "SELECT electronicsName FROM electronics";
@@ -15,7 +16,7 @@ function displayElectronics() {
                 return $records;
 }
 
-
+//used to display anime
 function displayAnime() {
             $conn = getDatabaseConnection();
             $sql = "SELECT name FROM anime";
@@ -29,6 +30,7 @@ function displayAnime() {
                 return $records;
 }
 
+//used to display apparel
 function displayApparel() {
             $conn = getDatabaseConnection();
             $sql = "SELECT apparelName FROM apparrel";
