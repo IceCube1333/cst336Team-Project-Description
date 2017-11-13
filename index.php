@@ -1,5 +1,11 @@
 <?php
     session_start();
+    $_SESSION['cart'] = array();
+    
+    if($_GET['Filter'] == 'All') {
+        header("Location: index.php");
+    }
+    
     //goes to anime.php for anime only info
     if ($_GET["Filter"] == 'anime') {
         header ("Location: anime.php");
@@ -18,6 +24,12 @@
     //displays all info
     if( $_GET["Filter"] == ' ' && $_GET["Sort"]== ' ') {
         header ("Location: index.php");
+    }
+    
+    if(isset($_GET['Sort'])) {
+        $sort = $_GET['Sort'];
+    } else {
+        $sort = "0";
     }
     
 ?>
@@ -40,12 +52,13 @@
                 Item Type:
                 <select name = "Filter">
                     <option value = " ">Filter By</option>
+                    <option value = "All">All</option>
                     <option value= "anime">Anime</option>
                     <option value= "apparel">Apparel</option>
                     <option value= "electronics">Electronics</option>
                 </select>
                 <br>
-                Item Type:
+                Sort by:
                 <select name = "Sort">
                     <option value = " ">Sort By</option>
                     <option value = "price">Price</option>
@@ -61,30 +74,42 @@
                 include "functions.php";
                 
                 //displays the electronics from the database
-                $electronics = displayElectronics();
-                
+                $electronics = displayElectronics($sort);
+                echo "<table id='table'>";
                 foreach($electronics as $electronic) {
-                    echo "<span id='electro'>". $electronic['electronicsName'] ."</span>"."<br/>";
+                    echo "<tr>";
+                    echo "<td>". $electronic['electronicsName'] ."</td>";
+                    echo "<td><a href='addCart.php?id=".$electronic['electronicsName']."'>Add to Cart</a></td>";
+                    echo "</tr>";
                 }
+                echo "</table>";
                 
                 echo "<br/>";
                 
                 //displays the anime from the database
-                $animes = displayAnime();
-                
+                $animes = displayAnime($sort);
+                echo "<table id='table'>";
                 foreach($animes as $anime) {
-                    echo "<span id='ani'>".$anime['name'] ."</span>". "<br/>";
+                    echo "<tr>";
+                    echo "<td>". $anime['name'] ."</td>";
+                    echo "<td><a href='addCart.php?id=".$anime['name']."'>Add to Cart</a></td>";
+                    echo "</tr>";
                 }
+                echo "</table>";
                 
                 echo "<br/>";
                 
                 //displays the apparel from the database
-                $apparels = displayApparel();
+                $apparels = displayApparel($sort);
                 
+                echo "<table id='table'>";
                 foreach($apparels as $apparel) {
-                    echo "<span id='app'>".$apparel['apparelName'] . "</span>". "<br/>";
+                    echo "<tr>";
+                    echo "<td>". $apparel['apparelName'] ."</td>";
+                    echo "<td><a href='addCart.php?id=".$apparel['apparelName']."'>Add to Cart</a></td>";
+                    echo "</tr>";
                 }
-                
+                echo "</table>";
                 
 
            ?>

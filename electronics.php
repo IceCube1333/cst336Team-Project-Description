@@ -1,5 +1,10 @@
 <?php
     session_start();
+    
+    if($_GET['Filter'] == 'All') {
+        header("Location: index.php");
+    }
+    
     //goes to anime.php for anime only info
     if ($_GET["Filter"] == 'anime') {
         header ("Location: anime.php");
@@ -19,6 +24,13 @@
     if( $_GET["Filter"] == ' ' && $_GET["Sort"]== ' ') {
         header ("Location: index.php");
     }
+    
+    if(isset($_GET['Sort'])) {
+        $sort = $_GET['Sort'];
+    } else {
+        $sort = "0";
+    }
+    
 ?>
 
 <html>
@@ -39,6 +51,7 @@
                 Item Type:
                 <select name = "Filter">
                     <option value = " ">Filter By</option>
+                    <option value = "All">All</option>
                     <option value= "anime">Anime</option>
                     <option value= "apparel">Apparel</option>
                     <option value= "electronics">Electronics</option>
@@ -61,11 +74,16 @@
                 
                 
                 //displays the electroncis from the database
-                $electronics = displayElectronics();
+                $electronics = displayElectronics($sort);
                 
+                echo "<table id='table'>";
                 foreach($electronics as $electronic) {
-                    echo "<span id='electro'>". $electronic['electronicsName'] ."</span>"."<br/>";
+                    echo "<tr>";
+                    echo "<td>". $electronic['electronicsName'] ."</td>";
+                    echo "<td><a href='addCart.php?id=".$electronic['electronicsName']."'>Add to Cart</a></td>";
+                    echo "</tr>";
                 }
+                echo "</table>";
                 
                 
 
