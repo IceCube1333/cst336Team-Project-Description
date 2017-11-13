@@ -15,6 +15,10 @@
         header ("Location: electronics.php");
     }
     
+    //displays all info
+    if( $_GET["Filter"] == ' ' && $_GET["Sort"]== ' ') {
+        header ("Location: index.php");
+    }
 ?>
 
 <html>
