@@ -48,9 +48,11 @@
             <?php
                 include "functions.php";
                 
-                displayElectronics();
+                $electronics = displayElectronics();
                 
-                
+                foreach($electronics as $electronic) {
+                    echo $electronic['electronicsName'] ."<br/>";
+                }
                 
                 
                 

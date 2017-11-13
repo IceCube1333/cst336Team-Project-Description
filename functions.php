@@ -3,22 +3,16 @@ session_start();
 include 'information.php';
 
 function displayElectronics() {
+            $conn = getDatabaseConnection();
             $sql = "SELECT electronicsName FROM electronics";
-            $result = $conn->query($sql);
+            // $result = $conn->query($sql);
                 
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    echo "<div id='original'>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo $row["electronicsName"]. "<br>";
-                        "<br>";
-                    }
-                    echo "</div>";
-                } else {
-                    echo "0 results";
-                }
-                // $conn->close();
-            // }
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+            //   print_r($records);
+                return $records;
 }
 
 
