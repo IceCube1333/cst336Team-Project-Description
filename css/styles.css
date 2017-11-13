@@ -13,4 +13,13 @@ header {
 }
 
 
- 
+td {
+    font_size: 1.8em;
+    
+}
+#wrapper {
+    margin: 0 auto;
+    width: 800px;
+    text-align: center; 
+    
+}

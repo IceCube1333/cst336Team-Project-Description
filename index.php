@@ -1,23 +1,14 @@
 <?php
     session_start();
-    include 'information.php';
+    // include 'information.php';
  
 ?>
 
 <html>
     <head>
         <title>Online Store: </title>
-           <style>
-           @import url("./CSS/styles.css");
-           td {
-               font_size: 1.8em;
-           }
-           #wrapper {
-               margin: 0 auto;
-               width: 800px;
-               text-align: center;
-           }
-       </style>
+        <link rel="stylesheet" href="css/styles.css" type="text/css" />
+        <link href="functions.php"/>
     </head>
     <body>
         <div id = "wrapper">
@@ -28,43 +19,75 @@
                 <h3>Choose an item you would like to purchase:</h3>
             </header>
             
-            <form method='get'>
-                
-                <strong><i>Item Name: </i></strong><input type = "text" name = "itemName">
-                <br>
-                <br>
-                
+            <form method>
                 <!--Need info from database for itemTypes-->
-                <strong><i>Item Type: </i></strong>
-                <select name = "itemType">
-                    <option value = ""></option>
+                Item Type:
+                <select name = "Filter">
+                    <option value = " ">Filter by</option>
+                    <option value= "anime">Anime</option>
+                    <option value= "apparel">Apparel</option>
+                    <option value= "electronics">Electronics</option>
                 </select>
                 <br>
                 
-                <strong><i>Item Type: </i></strong>
-                <select name = "itemType">
-                    <option value = ""></option>
+                
+                Item Type:
+                <select name = "Sort">
+                    <option value = " ">Sort by</option>
+                    <option value = "price">Price</option>
+                    <option value = "name">Name</option>
+                    <option value = "ascending">Ascending</option>
+                    <option value = "descending">Descending</option>
                 </select>
                 
                 <br>
-                
-                <input type = "checkbox" name = "available"> <strong><i>Available: </i></strong>
-                <br>
-                
-                <input type = "radio" name = "orderBy" value = "price"><strong><i>Order By Price: </i></strong>
-                <br>
-                
-                <input type = "radio" name = "orderBy" value = "name"><strong><i>Order By Name: </i></strong>
-                <br>
-                
-                <input type = "radio" name = "order" value = "ASC"><strong><i>Order By Ascending </i></strong><br>
-                <input type = "radio" name = "order" value = "DESC"><strong><i>Order By Descending </i></strong><br>
                 
                 <input type="submit" value="Search" name="submit">
             </form>
+            
+            <?php
+                include "functions.php";
                 
-            
-            
+                displayElectronics();
+                
+                
+                
+                
+                
+                
+                
+                
+                //this works
+                
+                // $servername = "us-cdbr-iron-east-05.cleardb.net";
+                // $username = "b5ba02fc3ba351";
+                // $password = "3f870355";
+                // $dbname = "heroku_860455424cb7b6b";
+                
+                // // connect to our mysql database server
+                // $conn = new mysqli($servername, $username, $password, $dbname);
+                // if ($conn->connect_error) {
+                //     die("Connection failed: " . $conn->connect_error);
+                // }
+                // // echo "Connected successfully";
+                 
+                // // make a query
+                //     $sql = "SELECT electronicsName FROM electronics WHERE 1";
+                //     $result = $conn->query($sql);
+                    
+                //     if ($result->num_rows > 0) {
+                //         // output data of each row
+                //         echo "<div id='original'>";
+                //         while ($row = $result->fetch_assoc()) {
+                //             echo $row["electronicsName"]. "<br>";
+                //             "<br>";
+                //         }
+                //         echo "</div>";
+                //     } else {
+                //         echo "0 results";
+                //     }
+                //     // $conn->close();
+           ?>
             
         </div>
         
