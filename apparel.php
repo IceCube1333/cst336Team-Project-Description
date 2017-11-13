@@ -60,22 +60,6 @@
             <?php
                 include "functions.php";
                 
-                $electronics = displayElectronics();
-                
-                foreach($electronics as $electronic) {
-                    echo "<span id='electro'>". $electronic['electronicsName'] ."</span>"."<br/>";
-                }
-                
-                echo "<br/>";
-                
-                $animes = displayAnime();
-                
-                foreach($animes as $anime) {
-                    echo "<span id='ani'>".$anime['name'] ."</span>". "<br/>";
-                }
-                
-                echo "<br/>";
-                
                 $apparels = displayApparel();
                 
                 foreach($apparels as $apparel) {

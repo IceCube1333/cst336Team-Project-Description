@@ -1,8 +1,7 @@
 <?php
     session_start();
     // include 'information.php';
-    
-    if ($_GET["Filter"] == 'anime') {
+     if ($_GET["Filter"] == 'anime') {
         header ("Location: anime.php");
     }
     
@@ -13,7 +12,6 @@
     if ($_GET["Filter"] == 'electronics') {
         header ("Location: electronics.php");
     }
-    
 ?>
 
 <html>
@@ -60,26 +58,10 @@
             <?php
                 include "functions.php";
                 
-                $electronics = displayElectronics();
-                
-                foreach($electronics as $electronic) {
-                    echo "<span id='electro'>". $electronic['electronicsName'] ."</span>"."<br/>";
-                }
-                
-                echo "<br/>";
-                
                 $animes = displayAnime();
                 
                 foreach($animes as $anime) {
                     echo "<span id='ani'>".$anime['name'] ."</span>". "<br/>";
-                }
-                
-                echo "<br/>";
-                
-                $apparels = displayApparel();
-                
-                foreach($apparels as $apparel) {
-                    echo "<span id='app'>".$apparel['apparelName'] . "</span>". "<br/>";
                 }
                 
                 
