@@ -2,7 +2,7 @@
     session_start();
     $_SESSION['cart'] = array();
     
-    //displays all info,
+    //displays all info
     if($_GET['Filter'] == 'All') {
         header("Location: index.php");
     }
