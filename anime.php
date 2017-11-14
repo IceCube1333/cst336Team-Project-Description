@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['cart'] = array();
     
     if($_GET['Filter'] == 'All') {
         header("Location: index.php");
@@ -42,6 +41,7 @@
     </head>
     <body>
         <div id = "wrapper">
+            
             <header>
                 <h1>Welcome!</h1>
                 <br>
@@ -58,7 +58,7 @@
                     <option value= "electronics">Electronics</option>
                 </select>
                 <br>
-                Sort by:
+                Item Type:
                 <select name = "Sort">
                     <option value = " ">Sort By</option>
                     <option value = "price">Price</option>
@@ -73,44 +73,20 @@
             <?php
                 include "functions.php";
                 
-                //displays the electronics from the database
-                $electronics = displayElectronics($sort);
-                echo "<table id='table'>";
-                foreach($electronics as $electronic) {
-                    echo "<tr>";
-                    echo "<td>". $electronic['electronicsName'] ."</td>";
-                    echo "<td><a href='addCart.php?id=".$electronic['electronicsName']."'>Add to Cart</a></td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-                
-                echo "<br/>";
-                
                 //displays the anime from the database
                 $animes = displayAnime($sort);
+                
                 echo "<table id='table'>";
                 foreach($animes as $anime) {
                     echo "<tr>";
                     echo "<td>". $anime['name'] ."</td>";
+                    echo "<td><a href='details.php?deets=".$anime['name']."'>". $anime['name'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$anime['name']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
                 echo "</table>";
                 
-                echo "<br/>";
-                
-                //displays the apparel from the database
-                $apparels = displayApparel($sort);
-                
-                echo "<table id='table'>";
-                foreach($apparels as $apparel) {
-                    echo "<tr>";
-                    echo "<td>". $apparel['apparelName'] ."</td>";
-                    echo "<td><a href='addCart.php?id=".$apparel['apparelName']."'>Add to Cart</a></td>";
-                    echo "</tr>";
-                }
-                echo "</table>";
-                
+                $_SESSION['type'] = "anime";
 
            ?>
             
