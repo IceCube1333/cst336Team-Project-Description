@@ -35,12 +35,13 @@
 
 <html>
     <head>
-        <title>Online Store: </title>
+        <title>Online Store</title>
         <link rel="stylesheet" href="css/styles.css" type="text/css" />
         <link href="functions.php"/>
     </head>
     <body>
         <div id = "wrapper">
+            
             <header>
                 <h1>Welcome!</h1>
                 <br>
@@ -60,6 +61,8 @@
                 Item Type:
                 <select name = "Sort">
                     <option value = " ">Sort By</option>
+                    <option value = "price">Price</option>
+                    <option value = "name">Name</option>
                     <option value = "ascending">Ascending</option>
                     <option value = "descending">Descending</option>
                 </select>
@@ -70,20 +73,65 @@
             <?php
                 include "functions.php";
                 
-                //displays the apparel from the database
-                $apparels = displayApparel($sort);
                 
+                $deets = $_GET['deets'];
+                $type= $_SESSION['type'];
+                $shebang=$_SESSION['shebang'];
+                $details = displayDetails($deets,$type);
+                
+                
+                if($type=="anime"){
                 echo "<table id='table'>";
-                foreach($apparels as $apparel) {
                     echo "<tr>";
-                    // echo "<td>". $apparel['apparelName'] ."</td>";
-                    echo "<td><a href='details.php?deets=".$apparel['apparelName']."'>". $apparel['apparelName'] ."</a></td>";
-                    echo "<td><a href='addCart.php?id=".$apparel['apparelName']."'>Add to Cart</a></td>";
+                    echo "<td> Item: ";
+                    echo $details[0]['name']. "</td>";
                     echo "</tr>";
-                }
-                echo "</table>";
+                    echo "<tr>";
+                    echo "<td> Item Type: ";
+                    echo $details[0]["itemType"] ."</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Price: ";
+                    echo  $details[0]["priceOfItem"] ."</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Status: ";
+                    echo $details[0]["itemStatus"] ."</td>";
+                    
+                    echo "</tr>";
                 
-                 $_SESSION['type'] = "apparel";
+                echo "</table>";
+                echo "<td><a href='addCart.php?id=".$details[0]['name']."'>Add to Cart</a></td>";
+
+                }
+                else{
+                    echo "<table id='table'>";
+                    echo "<tr>";
+                    echo "<td> Item: ";
+                    echo $details[0][$type.'Name']. "</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Item Type: ";
+                    echo $details[0][$type."Type"] ."</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Price: ";
+                    if($type=="apparel"){
+                    echo  $details[0]["priceOfApparel"] ."</td>";
+                    }
+                    if($type=="electronics"){
+                    echo  $details[0]["priceOfElectronics"] ."</td>";
+                    }
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Status: ";
+                    echo $details[0][$type."Status"] ."</td>";
+                    
+                    echo "</tr>";
+                
+                echo "</table>";
+                echo "<td><a href='addCart.php?id=".$details[0][$type.'Name']."'>Add to Cart</a></td>";
+                }
 
            ?>
             
