@@ -2,6 +2,7 @@
 session_start();
 include 'information.php';
 
+
 //used to display electronics 
 function displayElectronics($sort) {
     $conn = getDatabaseConnection();

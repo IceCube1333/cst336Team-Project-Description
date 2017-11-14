@@ -1,5 +1,6 @@
 <?php
     session_start();
+
     $_SESSION['cart'] = array();
     
     //displays all info
@@ -33,6 +34,9 @@
         $sort = "0";
     }
     
+
+    include 'information.php';
+ 
 ?>
 
 <html>
@@ -43,12 +47,31 @@
     </head>
     <body>
         <div id = "wrapper">
+
+        <title>Online Store: </title>
+           <style>
+           @import url("./CSS/styles.css");
+           td {
+               font_size: 1.8em;
+           }
+           #wrapper {
+               margin: 0 auto;
+               width: 800px;
+               text-align: center;
+           }
+       </style>
+    </head>
+    <body>
+        <div id = "wrapper">
+            
+
             <header>
                 <h1>Welcome!</h1>
                 <br>
                 <h3>Choose an item you would like to purchase:</h3>
             </header>
             
+
             <form method>
                 Item Type:
                 <select name = "Filter">
@@ -112,6 +135,7 @@
                 
 
            ?>
+
             
         </div>
         
