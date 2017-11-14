@@ -1,4 +1,5 @@
 <?php
+
     
 function getDatabaseConnection() {
     $host = "us-cdbr-iron-east-05.cleardb.net";
