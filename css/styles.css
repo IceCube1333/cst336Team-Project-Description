@@ -15,3 +15,7 @@ header {
     text-align: center; 
     
 }
+
+td {
+    color: green;
+}
