@@ -1,9 +1,6 @@
 <?php
     session_start();
-
-    $_SESSION['cart'] = array();
     
-    //displays all info,
     if($_GET['Filter'] == 'All') {
         header("Location: index.php");
     }
@@ -34,7 +31,6 @@
         $sort = "0";
     }
     
- 
 ?>
 
 <html>
@@ -45,13 +41,13 @@
     </head>
     <body>
         <div id = "wrapper">
-
+            
             <header>
                 <h1>Welcome!</h1>
                 <br>
                 <h3>Choose an item you would like to purchase:</h3>
             </header>
-
+            
             <form method>
                 Item Type:
                 <select name = "Filter">
@@ -62,9 +58,11 @@
                     <option value= "electronics">Electronics</option>
                 </select>
                 <br>
-                Sort by:
+                Item Type:
                 <select name = "Sort">
                     <option value = " ">Sort By</option>
+                    <option value = "price">Price</option>
+                    <option value = "name">Name</option>
                     <option value = "ascending">Ascending</option>
                     <option value = "descending">Descending</option>
                 </select>
@@ -75,48 +73,68 @@
             <?php
                 include "functions.php";
                 
-                //displays the electronics from the database
-                $electronics = displayElectronics($sort);
+                
+                $deets = $_GET['deets'];
+                $type= $_SESSION['type'];
+                $shebang=$_SESSION['shebang'];
+                $details = displayDetails($deets,$type);
+                
+                
+                if($type=="anime"){
                 echo "<table id='table'>";
-                foreach($electronics as $electronic) {
                     echo "<tr>";
-                    echo "<td><a href='details.php?deets=".$electronic['electronicsName']."'>". $electronic['electronicsName'] ."</a></td>";
-                    echo "<td><a href='addCart.php?id=".$electronic['electronicsName']."'>Add to Cart</a></td>";
+                    echo "<td> Item: ";
+                    echo $details[0]['name']. "</td>";
                     echo "</tr>";
-                }
-                echo "</table>";
-                
-                echo "<br/>";
-                
-                //displays the anime from the database
-                $animes = displayAnime($sort);
-                echo "<table id='table'>";
-                foreach($animes as $anime) {
                     echo "<tr>";
-                    echo "<td><a href='details.php?deets=".$anime['name']."'>". $anime['name'] ."</a></td>";
-                    echo "<td><a href='addCart.php?id=".$anime['name']."'>Add to Cart</a></td>";
+                    echo "<td> Item Type: ";
+                    echo $details[0]["itemType"] ."</td>";
                     echo "</tr>";
-                }
-                echo "</table>";
-                
-                echo "<br/>";
-                
-                //displays the apparel from the database
-                $apparels = displayApparel($sort);
-                
-                echo "<table id='table'>";
-                foreach($apparels as $apparel) {
                     echo "<tr>";
-                    echo "<td><a href='details.php?deets=".$apparel['apparelName']."'>". $apparel['apparelName'] ."</a></td>";
-                    echo "<td><a href='addCart.php?id=".$apparel['apparelName']."'>Add to Cart</a></td>";
+                    echo "<td> Price: ";
+                    echo  $details[0]["priceOfItem"] ."</td>";
                     echo "</tr>";
-                }
-                echo "</table>";
+                    echo "<tr>";
+                    echo "<td> Status: ";
+                    echo $details[0]["itemStatus"] ."</td>";
+                    
+                    echo "</tr>";
                 
+                echo "</table>";
+                echo "<td><a href='addCart.php?id=".$details[0]['name']."'>Add to Cart</a></td>";
+
+                }
+                else{
+                    echo "<table id='table'>";
+                    echo "<tr>";
+                    echo "<td> Item: ";
+                    echo $details[0][$type.'Name']. "</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Item Type: ";
+                    echo $details[0][$type."Type"] ."</td>";
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Price: ";
+                    if($type=="apparel"){
+                    echo  $details[0]["priceOfApparel"] ."</td>";
+                    }
+                    if($type=="electronics"){
+                    echo  $details[0]["priceOfElectronics"] ."</td>";
+                    }
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<td> Status: ";
+                    echo $details[0][$type."Status"] ."</td>";
+                    
+                    echo "</tr>";
+                
+                echo "</table>";
+                echo "<td><a href='addCart.php?id=".$details[0][$type.'Name']."'>Add to Cart</a></td>";
+                }
 
            ?>
-
-
+            
         </div>
         
     </body>

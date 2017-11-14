@@ -2,66 +2,77 @@
 session_start();
 include 'information.php';
 
-//May need to be changed depending on how the tables are structured
-function createSql() {
-    $filters = parseFilters();
-    if($filters == null) {
-        return null;
-    }
-    $sql = "SELECT ".$filters[0]." FROM ".$filters[1]." WHERE ".$filters[2];
-    if($filters[3] != "0") {
-        $sql += " ORDER BY ".$filters[3];
-        if($filters[4] != "0") {
-            $sql += " ".$filters[4];
-        }
-    } else if($filters[4] != "0") {
-        $sql += " ".$filters[4];
-    }
-    
-    return $sql;
-}
 
-//May need to be changed depending on how the tables are structured
-function parseFilters() {
-    if(isset($_GET['itemName'])) {
-        $itemName = $_GET['itemName'];
-    } else {
-        $itemName = "*";
+//used to display electronics 
+function displayElectronics($sort) {
+    $conn = getDatabaseConnection();
+    if($sort == "0") {
+        $sql = "SELECT electronicsName FROM electronics";
+    } else if($sort == "ascending") {
+        $sql = "SELECT electronicsName FROM electronics ORDER BY electronicsName ASC";
+    } else if($sort == "descending") {
+        $sql = "SELECT electronicsName FROM electronics ORDER BY electronicsName DESC";
     }
-    if(isset($_GET['itemType'])) {
-        $itemType = $_GET['itemType'];
-    } else {
-        return null;
-    }
-    if(isset($_GET['available'])) {
-        $available = $_GET['available'];
-    } else {
-        $available = "1";
-    }
-    if(isset($_GET['orderBy'])) {
-        $orderBy = $_GET['orderBy'];
-    } else {
-        $orderBy = "0";
-    }
-    if(isset($_GET['order'])) {
-        $order = $_GET['order'];
-    } else {
-        $order = "0";
-    }
-    $filters =  array($itemName, $itemType, $available, $orderBy, $order);
-    return $filters;
-}
-
-function displayInfo() {
-    $conn = checkDatabaseConnection();
-    $sql = "SELECT * FROM electronics NATURAL JOIN apparel NATURAL JOIN anime WHERE 1";
+                
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        //echo "<tr>";
-        //Display all products
-        //echo "</tr>";
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+    return $records;
+}
+
+//used to display anime
+function displayAnime($sort) {
+    $conn = getDatabaseConnection();
+    if($sort == "0") {
+        $sql = "SELECT name FROM anime";
+    } else if($sort == "ascending") {
+        $sql = "SELECT name FROM anime ORDER BY name ASC";
+    } else if($sort == "descending") {
+        $sql = "SELECT name FROM anime ORDER BY name DESC";
     }
+                
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+    return $records;
+}
+
+//used to display apparel
+function displayApparel($sort) {
+    $conn = getDatabaseConnection();
+    if($sort == "0") {
+        $sql = "SELECT apparelName FROM apparrel";
+    } else if($sort == "ascending") {
+        $sql = "SELECT apparelName FROM apparrel ORDER BY apparelName ASC";
+    } else if($sort == "descending") {
+        $sql = "SELECT apparelName FROM apparrel ORDER BY apparelName DESC";
+    }
+          
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+    return $records;
+}
+
+function displayDetails($name,$type) {
+    $conn = getDatabaseConnection();
+    if($type=="anime"){
+    $sql = 'SELECT name, itemType, priceOfItem, itemStatus from '.$type.' where name Like "%'.$name.'%"';
+    }
+    else if($type=="electronics"){
+        $sql = 'SELECT '.$type.'Name, '.$type.'Type, priceOfElectronics, '.$type.'Status from electronics where electronicsName Like "%'.$name.'%"';
+    }
+    else if($type=="apparel"){
+        $sql = 'SELECT '.$type.'Name, '.$type.'Type, priceOfApparel, '.$type.'Status from apparrel where apparelName Like "%'.$name.'%"';
+    }
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+    return $records;
 }
 
 ?>
