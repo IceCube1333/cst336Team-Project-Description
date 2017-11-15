@@ -1,14 +1,5 @@
 <?php
 session_start();
-// include 'addCart.php';
-    //pushes id into cart, id is the name of the item
-    //array_push($_SESSION['cart'], $_GET['id']);
-    // $_SESSION['cart'];
-    
-    // foreach ($_SESSION['cart'] as $items) {
-    //     // echo $_SESSION['cart'];
-    //     echo "What's up dog";
-    // }
 ?>
 
 
@@ -24,9 +15,11 @@ session_start();
             <h1>Welcome!</h1>
             <br>
             <form>
+                <input type="submit" name="all" value="All">
                 <input type="submit" name="ani" value="Anime">
                 <input type="submit" name="elec" value="Electronics">
                 <input type="submit" name="app" value="Apparel">
+                <input type="submit" name="res" value="Reset Cart">
             </form>
             <h3>Your Cart:</h3>
         </header>
@@ -34,13 +27,14 @@ session_start();
         <div id="wrapper">
             
             <?php
-                    
-                    
+                    //loops through each item of the cart
                     foreach ($_SESSION['cart'] as $value) {
                         echo "$value <br>";
                     }
                 
-    
+                    if($_GET[all]) {
+                        header("Location: index.php");
+                    }
                     if($_GET[ani]) {
                         header("Location: anime.php");
                     }
@@ -49,6 +43,9 @@ session_start();
                     }
                     if($_GET[app]) {
                         header("Location: apparel.php");
+                    }
+                    if($_GET[res]) {
+                        header("Location: reset_cart.php");
                     }
             ?>
         

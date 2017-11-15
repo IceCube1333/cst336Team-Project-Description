@@ -1,7 +1,5 @@
 <?php
     session_start();
-
-    $_SESSION['cart'] = array();
     
     //displays all info,
     if($_GET['Filter'] == 'All') {
