@@ -15,11 +15,11 @@ session_start();
             <h1>Welcome!</h1>
             <br>
             <form>
-                <input type="submit" name="all" value="All">
+                <!--<input type="submit" name="all" value="All">-->
                 <input type="submit" name="ani" value="Anime">
                 <input type="submit" name="elec" value="Electronics">
                 <input type="submit" name="app" value="Apparel">
-                <input type="submit" name="res" value="Reset Cart">
+                <!--<input type="submit" name="res" value="Reset Cart">-->
             </form>
             <h3>Your Cart:</h3>
         </header>
@@ -32,9 +32,9 @@ session_start();
                         echo "$value <br>";
                     }
                 
-                    if($_GET[all]) {
-                        header("Location: index.php");
-                    }
+                    // if($_GET[all]) {
+                    //     header("Location: index.php");
+                    // }
                     if($_GET[ani]) {
                         header("Location: anime.php");
                     }
@@ -44,9 +44,9 @@ session_start();
                     if($_GET[app]) {
                         header("Location: apparel.php");
                     }
-                    if($_GET[res]) {
-                        header("Location: reset_cart.php");
-                    }
+                    // if($_GET[res]) {
+                    //     header("Location: reset_cart.php");
+                    // }
             ?>
         
         </div>
