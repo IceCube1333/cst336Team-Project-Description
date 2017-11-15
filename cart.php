@@ -23,27 +23,35 @@ session_start();
         <header>
             <h1>Welcome!</h1>
             <br>
+            <form>
+                <input type="submit" name="ani" value="Anime">
+                <input type="submit" name="elec" value="Electronics">
+                <input type="submit" name="app" value="Apparel">
+            </form>
             <h3>Your Cart:</h3>
         </header>
         
         <div id="wrapper">
-            <?php
             
-                    foreach($_SESSION['cart'] as $item) {
-                        echo $_SESSION['cart'][0];
-                        // echo $_SESSION['cart'][1];
-                        
+            <?php
+                    
+                    
+                    foreach ($_SESSION['cart'] as $value) {
+                        echo "$value <br>";
                     }
-                    // print_r($_SESSION['cart']);
+                
     
-                    if($_GET[sub]) {
-                        header("Location: index.php");
+                    if($_GET[ani]) {
+                        header("Location: anime.php");
+                    }
+                    if($_GET[elec]) {
+                        header("Location: electronics.php");
+                    }
+                    if($_GET[app]) {
+                        header("Location: apparel.php");
                     }
             ?>
-            
-            <form>
-                <input type="submit" name="sub" value="Back">
-            </form>
+        
         </div>
         
     </body>
