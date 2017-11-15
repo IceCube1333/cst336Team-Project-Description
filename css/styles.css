@@ -12,10 +12,14 @@ header {
 #wrapper {
     margin: 0 auto;
     width: 800px;
-    text-align: center; 
+    text-align: center !important; 
     
 }
 
 a {
     color: gold;
+}
+
+table {    
+    margin-left: 25%;
 }

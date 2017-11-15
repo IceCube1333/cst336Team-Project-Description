@@ -45,10 +45,11 @@
             <header>
                 <h1>Welcome!</h1>
                 <br>
+                <a href="cart.php"><img src="img/cart.png"></a>
                 <h3>Choose an item you would like to purchase:</h3>
             </header>
             
-            <form method>
+            <form>
                 Item Type:
                 <select name = "Filter">
                     <option value = " ">Filter By</option>
@@ -78,7 +79,7 @@
                 foreach($animes as $anime) {
                     echo "<tr>";
                     // echo "<td>". $anime['name'] ."</td>";
-                    echo "<td><a href='details.php?deets=".$anime['name']."'>". $anime['name'] ."</a></td>";
+                    echo "<td><a href='details.php?deets=".$anime['name']."&type=anime'>". $anime['name'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$anime['name']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
