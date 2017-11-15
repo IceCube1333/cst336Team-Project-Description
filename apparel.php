@@ -44,10 +44,11 @@
             <header>
                 <h1>Welcome!</h1>
                 <br>
+                <a href="cart.php"><img src="img/cart.png"></a>
                 <h3>Choose an item you would like to purchase:</h3>
             </header>
             
-            <form method>
+            <form>
                 Item Type:
                 <select name = "Filter">
                     <option value = " ">Filter By</option>
@@ -77,7 +78,7 @@
                 foreach($apparels as $apparel) {
                     echo "<tr>";
                     // echo "<td>". $apparel['apparelName'] ."</td>";
-                    echo "<td><a href='details.php?deets=".$apparel['apparelName']."'>". $apparel['apparelName'] ."</a></td>";
+                    echo "<td><a href='details.php?deets=".$apparel['apparelName']."&type=apparel'>". $apparel['apparelName'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$apparel['apparelName']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
