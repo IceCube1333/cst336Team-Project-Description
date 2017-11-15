@@ -75,7 +75,7 @@
                 
                 
                 $deets = $_GET['deets'];
-                $type= $_SESSION['type'];
+                $type= $_GET['type'];
                 $shebang=$_SESSION['shebang'];
                 $details = displayDetails($deets,$type);
                 

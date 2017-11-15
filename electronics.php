@@ -80,13 +80,12 @@
                 foreach($electronics as $electronic) {
                     echo "<tr>";
                     echo "<td>". $electronic['electronicsName'] ."</td>";
-                    echo "<td><a href='details.php?deets=".$electronic['electronicsName']."'>". $electronic['electronicsName'] ."</a></td>";
+                    echo "<td><a href='details.php?deets=".$electronic['electronicsName']."&type=electronics'>". $electronic['electronicsName'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$electronic['electronicsName']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
                 echo "</table>";
                 
-                 $_SESSION['type'] = "electronics";
                 
                 
 

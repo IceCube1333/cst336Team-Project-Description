@@ -77,8 +77,9 @@
                 $electronics = displayElectronics($sort);
                 echo "<table id='table'>";
                 foreach($electronics as $electronic) {
+                    //$_SET['type']="electronics";
                     echo "<tr>";
-                    echo "<td>". $electronic['electronicsName'] ."</td>";
+                    echo "<td><a href='details.php?deets=".$electronic['electronicsName']."&type=electronics'>". $electronic['electronicsName'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$electronic['electronicsName']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
@@ -91,7 +92,7 @@
                 echo "<table id='table'>";
                 foreach($animes as $anime) {
                     echo "<tr>";
-                    echo "<td>". $anime['name'] ."</td>";
+                    echo "<td><a href='details.php?deets=".$anime['name']."&type=anime'>". $anime['name'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$anime['name']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
@@ -104,8 +105,9 @@
                 
                 echo "<table id='table'>";
                 foreach($apparels as $apparel) {
+                   // $_SET['type']="apparel";
                     echo "<tr>";
-                    echo "<td>". $apparel['apparelName'] ."</td>";
+                    echo "<td><a href='details.php?deets=".$apparel['apparelName']."&type=apparel'>". $apparel['apparelName'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$apparel['apparelName']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }

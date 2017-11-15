@@ -80,13 +80,12 @@
                 foreach($animes as $anime) {
                     echo "<tr>";
                     echo "<td>". $anime['name'] ."</td>";
-                    echo "<td><a href='details.php?deets=".$anime['name']."'>". $anime['name'] ."</a></td>";
+                    echo "<td><a href='details.php?deets=".$anime['name']."&type=anime'>". $anime['name'] ."</a></td>";
                     echo "<td><a href='addCart.php?id=".$anime['name']."'>Add to Cart</a></td>";
                     echo "</tr>";
                 }
                 echo "</table>";
                 
-                $_SESSION['type'] = "anime";
 
            ?>
             
