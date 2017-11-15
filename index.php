@@ -1,6 +1,8 @@
 <?php
     session_start();
-    
+    if($_SESSION['cart'] == NULL) {
+        $_SESSION['cart'] = array();
+    }
     //displays all info,
     if($_GET['Filter'] == 'All') {
         header("Location: index.php");
